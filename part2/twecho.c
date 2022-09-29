@@ -5,18 +5,19 @@
 #include <string.h> // for strlen()
 
 char** duplicateArgs(int argc, char** argv){
-	char** array=(char **)calloc((argc+1), sizeof(char *)); 
+	char** array=(char **)malloc((argc+1)*sizeof(char *)); 
 
 	int b;
 
 	for (b=0; b<argc; b++){
 		int d = 1 + strlen(argv[b]); 
-		array[b]= (char*) calloc(d , sizeof(char));
+		array[b]= (char*) malloc(d*sizeof(char));
 		int f; 
 		for(f=0; f<d; f++){
 			array[b][f]= toupper(argv[b][f]);
 		}
 	}
+	array[argc] = NULL;
 
 	return array;
 }
