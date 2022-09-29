@@ -4,29 +4,39 @@
 #include <ctype.h> // for toupper()
 #include <string.h> // for strlen()
 
-char** duplicateArgs(int argc, char** argv){
-	char** array=(char **)malloc((argc+1)*sizeof(char *)); 
+static char **duplicateArgs(int argc, char **argv)
+{
+    char **array;
+    int i;
 
-	int b;
+    array = (char **)malloc((argc + 1) * sizeof(char *));
+    if (array == NULL) {
+        perror("malloc returned NULL");
+        exit(1);
+    }
 
-	for (b=0; b<argc; b++){
-		int d = 1 + strlen(argv[b]); 
-		array[b]= (char*) malloc(d*sizeof(char));
-		int f; 
-		for(f=0; f<d; f++){
-			array[b][f]= toupper(argv[b][f]);
-		}
-	}
-	array[argc] = NULL;
+    for (i = 0; i < argc; i++) {
+        array[i] = (char *)malloc(strlen(argv[i]) + 1);
+        if (array == NULL) {
+            perror("malloc returned NULL");
+            exit(1);
+        }
 
-	return array;
+        char *t = array[i];
+        char *s = argv[i];
+        while ((*t++ = toupper(*s++)) != 0);
+    }
+
+    array[argc] = NULL;
+
+    return array;
 }
 
 void freeDuplicatedArgs(char** copy){
-    int g=0; 
+    int i=0; 
  
-	while(copy[g] != 0){
-		free(copy[g]); 
+	while(copy[i] != 0){
+		free(copy[i]); 
 		g++; 
 	}
 	free(copy); 
