@@ -1,8 +1,11 @@
-convert: convert.o
-	gcc convert.o -g -Wall -Wpedantic -std=c17 -o convert
-
+CC = gcc
+CFLAGS = -g -Wall -Wpedantic -std=c17
+LDFLAGS = 
+convert: convert.o convert.o
+	$(CC) $(LDFLAGS) -o convert convert.o
 convert.o: convert.c
-	gcc -g -Wall -Wpedantic -std=c17 -c convert.c
+	 $(CC) $(CFLAGS) -c -o convert.o convert.c
 
+.PHONY: clean
 clean:
-	rm *.o convert
+	rm -rf *.o convert a.out

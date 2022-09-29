@@ -1,11 +1,15 @@
+CC = gcc
+CFLAGS = -g -Wall -Wpedantic -std=c17
+LDFLAGS = 
 twecho: main.o twecho.o
-	gcc main.o twecho.o -g -Wall -Wpedantic -std=c17 -o twecho
+	$(CC) $(LDFLAGS) -o twecho main.o twecho.o
 
 main.o: main.c
-	gcc -g -Wall -Wpedantic -std=c17 -c main.c
+	 $(CC) $(CFLAGS) -c -o main.o main.c
 
 twecho.o: twecho.c twecho.h
-	gcc -g -Wall -Wpedantic -std=c17 -c twecho.c
+	$(CC) $(CFLAGS) -c -o twecho.o twecho.c
 
+.PHONY: clean
 clean:
-	rm *.o twecho
+	rm -rf *.o twecho a.out

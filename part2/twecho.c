@@ -4,7 +4,7 @@
 #include <ctype.h> // for toupper()
 #include <string.h> // for strlen()
 
-static char **duplicateArgs(int argc, char **argv)
+char** duplicateArgs(int argc, char **argv)
 {
     char **array;
     int i;
@@ -37,7 +37,7 @@ void freeDuplicatedArgs(char** copy){
  
 	while(copy[i] != 0){
 		free(copy[i]); 
-		g++; 
+		i++; 
 	}
 	free(copy); 
 }
