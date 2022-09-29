@@ -8,7 +8,7 @@ char *convertToBinary(int x){
     char* binary = (char*)malloc(total_size*sizeof(char));
     
     int k = 0;
-    for(unsigned i = (1 << 31); i > 0; i = i/2){
+    for(unsigned i = (1 << (bits-1)); i > 0; i = i/2){
         if((k+1)%5 == 0){
             binary[k++] = ' ';
         }
@@ -40,18 +40,5 @@ int main(int argc, char **argv)
     printf("binary:       %s\n", bin);
     free(bin);
 
-    // int k = 0;
-    // for(unsigned i = (1 << 31); i > 0; i = i/2){
-    //     if((k % 4) == 0){
-    //             printf(" ");
-    //     }
-    //     if((x & i) == 0){
-    //             printf("0");
-    //     }else{
-    //             printf("1");
-    //     }
-    //     k++;
-    // }
-    // printf("\n");
     return 0;
 }
