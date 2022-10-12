@@ -1,0 +1,1 @@
+int adjust_rank(int x);
